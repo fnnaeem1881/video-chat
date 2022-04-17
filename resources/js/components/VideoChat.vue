@@ -204,7 +204,6 @@ export default {
       });
       // listen to incomming call
       this.videoCallParams.channel.listen("StartVideoChat", ({ data }) => {
-        console.log(data);
         if (data.type === "incomingCall") {
           // add a new line to the sdp to take care of error
           const updatedSignal = {
@@ -238,7 +237,6 @@ export default {
       });
 
       this.videoCallParams.peer1.on("signal", (data) => {
-        console.log(data);
         // send user call signal
         axios
           .post("/video/call-user", {
@@ -272,7 +270,6 @@ export default {
       });
 
       this.videoCallParams.channel.listen("StartVideoChat", ({ data }) => {
-        console.log(data);
         if (data.type === "callAccepted") {
           if (data.signal.renegotiate) {
             console.log("renegotating");
@@ -337,7 +334,7 @@ export default {
       this.videoCallParams.peer2.on("close", () => {
         console.log("call closed accepter");
       });
-      console.log(this.videoCallParams.callerSignal);
+
       this.videoCallParams.peer2.signal(this.videoCallParams.callerSignal);
     },
     toggleCameraArea() {

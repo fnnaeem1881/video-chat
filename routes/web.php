@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/video-chat', function () {
         // fetch all users apart from the authenticated user
         $users = User::where('id', '<>', Auth::id())->get();
+    
         return view('video-chat', ['users' => $users]);
     });
 
@@ -56,6 +57,6 @@ Route::group(['middleware' => ['auth']], function () {
  * so that you can register new users. I disabled the registration endpoint so that my hosted demo won't be abused.
  * 
  */
-// Auth::routes();
+Auth::routes();
 Auth::routes(['register' => false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
